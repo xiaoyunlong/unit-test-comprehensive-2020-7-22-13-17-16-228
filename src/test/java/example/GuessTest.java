@@ -77,4 +77,14 @@ public class GuessTest {
         Assertions.assertEquals("2A2B", result);
     }
 
+    @Test
+    void should_return_resonable_answer_when_game_start(){
+        //given
+        GuessNumber guessNumber = new GuessNumber();
+        //when
+        int[] result = guessNumber.gameStrat();
+        //then
+        Assertions.assertEquals(4,result.length);
+
+    }
 }

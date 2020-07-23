@@ -1,6 +1,7 @@
 package example;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class GuessNumber {
 
@@ -30,6 +31,17 @@ public class GuessNumber {
                     result++;
                 }
             }
+        }
+        return result;
+    }
+
+    public int[] gameStrat() {
+        //写到这里的时候着急了，忘了小步提交！！！
+        Random random = new Random();
+        int[] result = new int[4] ;
+        for (int index = 0; index < result.length; index++) {
+            result[index] = random.nextInt(10); //随机数可能会重复！
+//            System.out.println(result[index]);
         }
         return result;
     }

@@ -45,4 +45,8 @@ public class GuessNumber {
         }
         return result;
     }
+
+    public String checkGuessInputNumber(int[] guessInputNumber) {
+        return null;
+    }
 }

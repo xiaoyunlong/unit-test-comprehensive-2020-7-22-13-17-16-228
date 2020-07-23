@@ -78,13 +78,24 @@ public class GuessTest {
     }
 
     @Test
-    void should_return_resonable_answer_when_game_start(){
+    void should_return_resonable_answer_when_game_start() {
         //given
         GuessNumber guessNumber = new GuessNumber();
         //when
         int[] result = guessNumber.gameStrat();
         //then
-        Assertions.assertEquals(4,result.length);
+        Assertions.assertEquals(4, result.length);
 
+    }
+
+    @Test
+    void should_return_ok_number_when_input_guess_given_1234() {
+        //given
+        GuessNumber guessNumber = new GuessNumber();
+        int[] guessInputNumber = {1, 2, 3, 4};
+        //when
+        String result = guessNumber.checkGuessInputNumber(guessInputNumber);
+        //then
+        Assertions.assertEquals("ok", result);
     }
 }

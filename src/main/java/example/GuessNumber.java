@@ -2,6 +2,7 @@ package example;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 public class GuessNumber {
     private static int MAX_GAME_TIMES = 6;
@@ -60,11 +61,30 @@ public class GuessNumber {
         return "OK";
     }
 
-    public String gameFlow() {
-//        int[] answer = this.gameStrat();
-//        for (int gameTime = 0; gameTime < MAX_GAME_TIMES; gameTime++) {
-//
-//        }
+    public String game() {
+        Scanner sc = new Scanner(System.in);
+        int[] answer = this.gameStrat();
+        int[] guessInput = new int[answer.length];
+        String result;
+        for (int gameTime = 0; gameTime < MAX_GAME_TIMES; gameTime++) {
+            for (int index = 0; index < answer.length; index++) {
+                guessInput[index] = sc.nextInt();
+            }
+            if(checkGuessInputNumber(guessInput).equals("OK")){
+                result = guess(guessInput,answer);
+                System.out.println("第"+gameTime+"次游戏的output:"+result);
+                if (result.equals("4A0B")){
+                    return "You Win!";
+                }
+            }
+        }
         return "Game Over!";
+    }
+
+    public boolean isGameTimesLessThanMaxTimes(int gameTimes){
+        if(gameTimes > 6){
+            return false;
+        }
+        return true;
     }
 }

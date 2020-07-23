@@ -89,7 +89,7 @@ public class GuessTest {
     }
 
     @Test
-    void should_return_ok_number_when_input_guess_given_1234() {
+    void should_return_ok_when_input_guess_given_1234() {
         //given
         GuessNumber guessNumber = new GuessNumber();
         int[] guessInputNumber = {1, 2, 3, 4};
@@ -97,5 +97,27 @@ public class GuessTest {
         String result = guessNumber.checkGuessInputNumber(guessInputNumber);
         //then
         Assertions.assertEquals("OK", result);
+    }
+
+    @Test
+    void should_return_wrong_when_input_guess_given_1134() {
+        //given
+        GuessNumber guessNumber = new GuessNumber();
+        int[] guessInputNumber = {1, 1, 3, 4};
+        //when
+        String result = guessNumber.checkGuessInputNumber(guessInputNumber);
+        //then
+        Assertions.assertEquals("Wrong Input，Input again.", result);
+    }
+
+    @Test
+    void should_return_false_number_when_input_guess_given_1134() {
+        //given
+        GuessNumber guessNumber = new GuessNumber();
+        int[] guessInputNumber = {1, 1, 3, 4};
+        //when
+        String result = guessNumber.checkGuessInputNumber(guessInputNumber);
+        //then
+        Assertions.assertEquals("Wrong Input，Input again.", result);
     }
 }

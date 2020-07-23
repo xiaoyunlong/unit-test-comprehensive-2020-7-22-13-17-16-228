@@ -42,11 +42,11 @@ public class GuessTest {
     }
 
     @Test
-    void should_return_0A2B_when_guess_given_guess_number_1234_and_answer_2178(){
+    void should_return_0A2B_when_guess_given_guess_number_1234_and_answer_7128(){
         //given
         GuessNumber guessNumber = new GuessNumber();
         int[] guessInput = {1,2,3,4};
-        int[] answer = {2,1,7,8};
+        int[] answer = {7,1,2,8};
         //when
         String result = guessNumber.guess(guessInput,answer);
         //then

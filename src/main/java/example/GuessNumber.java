@@ -59,4 +59,9 @@ public class GuessNumber {
         }
         return "OK";
     }
+
+    public String gameFlow() {
+
+        return null;
+    }
 }

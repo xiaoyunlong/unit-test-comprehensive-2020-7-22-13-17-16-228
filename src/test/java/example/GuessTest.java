@@ -111,13 +111,12 @@ public class GuessTest {
     }
 
     @Test
-    void should_return_false_number_when_input_guess_given_1134() {
+    void should_return_false_when_input_guess_number_more_than_6_time() {
         //given
         GuessNumber guessNumber = new GuessNumber();
-        int[] guessInputNumber = {1, 1, 3, 4};
         //when
-        String result = guessNumber.checkGuessInputNumber(guessInputNumber);
+        String result = guessNumber.gameFlow();
         //then
-        Assertions.assertEquals("Wrong Input，Input again.", result);
+        Assertions.assertEquals("Game Over!", result);
     }
 }

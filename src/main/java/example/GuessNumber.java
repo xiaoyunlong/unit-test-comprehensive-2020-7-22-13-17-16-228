@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class GuessNumber {
-
+    private static int MAX_GAME_TIMES = 6;
 
     public String guess(int[] guessInput, int[] answer) {
         int countA = this.getCountOfGuessInputCorrectNumberAndPosition(guessInput, answer);
@@ -61,7 +61,10 @@ public class GuessNumber {
     }
 
     public String gameFlow() {
-
-        return null;
+//        int[] answer = this.gameStrat();
+//        for (int gameTime = 0; gameTime < MAX_GAME_TIMES; gameTime++) {
+//
+//        }
+        return "Game Over!";
     }
 }

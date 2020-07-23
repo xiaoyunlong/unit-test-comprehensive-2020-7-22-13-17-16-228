@@ -47,6 +47,16 @@ public class GuessNumber {
     }
 
     public String checkGuessInputNumber(int[] guessInputNumber) {
-        return null;
+        if(guessInputNumber.length < 4 && guessInputNumber!=null){
+            return "Wrong Input，Input again.";
+        }
+        for (int index = 0; index < guessInputNumber.length; index++) {
+            for (int index2 = index+1; index2 < guessInputNumber.length; index2++) {
+                if (guessInputNumber[index] == guessInputNumber[index2]){
+                    return "Wrong Input，Input again.";
+                }
+            }
+        }
+        return "OK";
     }
 }

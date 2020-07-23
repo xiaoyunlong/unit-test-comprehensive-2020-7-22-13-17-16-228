@@ -96,6 +96,6 @@ public class GuessTest {
         //when
         String result = guessNumber.checkGuessInputNumber(guessInputNumber);
         //then
-        Assertions.assertEquals("ok", result);
+        Assertions.assertEquals("OK", result);
     }
 }

@@ -19,7 +19,6 @@ public class AnswerGenerator {
             } while (bool[randomInt]);
             answer[index] = randomInt;
             bool[randomInt] = true;
-            System.out.println(randomInt);
         }
 
     }

@@ -78,7 +78,7 @@ public class GuessTest {
     }
 
     @Test
-    void should_return_reasonable_length_answer_when_game_start() {
+    void should_return_reasonable_length_answer_when_game_start_given_answer() {
         //given
         GuessNumber guessNumber = new GuessNumber(new AnswerGenerator());
         //when
@@ -87,6 +87,7 @@ public class GuessTest {
         Assertions.assertEquals(4, result.length);
 
     }
+
 
     @Test
     void should_return_ok_when_input_guess_given_1234() {
@@ -122,7 +123,7 @@ public class GuessTest {
     }
 
     @Test
-    void should_return_true_when_input_guess_number_more_than_6_time() {
+    void should_return_true_when_input_guess_number_less_than_6_time() {
         //given
         GuessNumber guessNumber = new GuessNumber(new AnswerGenerator());
         int gameTimes = 3;

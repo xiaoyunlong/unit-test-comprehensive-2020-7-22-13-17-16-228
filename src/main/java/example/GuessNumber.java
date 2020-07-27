@@ -2,6 +2,7 @@ package example;
 
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class GuessNumber {
     private static int MAX_GAME_TIMES = 6;
@@ -45,15 +46,16 @@ public class GuessNumber {
 
 
     public String checkGuessInputNumber(int[] guessInputNumber) {
-        if(guessInputNumber.length < 4){
+        if (guessInputNumber.length != 4) {
             return "Wrong Input，Input again.";
         }
-        for (int index = 0; index < guessInputNumber.length; index++) {
-            for (int index2 = index+1; index2 < guessInputNumber.length; index2++) {
-                if (guessInputNumber[index] == guessInputNumber[index2]){
-                    return "Wrong Input，Input again.";
-                }
-            }
+        int distinctSizeofInputNumber = Arrays.asList(guessInputNumber)
+                .stream()
+                .distinct()
+                .collect(Collectors.toList())
+                .size();
+        if(distinctSizeofInputNumber != guessInputNumber.length){
+            return "Wrong Input，Input again.";
         }
         return "OK";
     }
@@ -67,10 +69,10 @@ public class GuessNumber {
             for (int index = 0; index < answer.length; index++) {
                 guessInput[index] = sc.nextInt();
             }
-            if(checkGuessInputNumber(guessInput).equals("OK")){
-                result = guess(guessInput,answer);
-                System.out.println("第"+gameTime+"次游戏的output:"+result);
-                if (result.equals("4A0B")){
+            if (checkGuessInputNumber(guessInput).equals("OK")) {
+                result = guess(guessInput, answer);
+                System.out.println("第" + gameTime + "次游戏的output:" + result);
+                if (result.equals("4A0B")) {
                     return "You Win!";
                 }
             }
@@ -78,8 +80,8 @@ public class GuessNumber {
         return "Game Over!";
     }
 
-    public boolean isGameTimesLessThanMaxTimes(int gameTimes){
-        if(gameTimes > 6){
+    public boolean isGameTimesLessThanMaxTimes(int gameTimes) {
+        if (gameTimes > 6) {
             return false;
         }
         return true;

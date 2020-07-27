@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class GuessNumber {
-    private static int MAX_GAME_TIMES = 6;
     private AnswerGenerator answerGenerator;
     private int availableGameTimes = 6;
 

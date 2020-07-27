@@ -27,17 +27,7 @@ public class AnswerGenerator {
         return answer;
     }
 
-    public int getMaxNumberInRange () {
-        return maxNumberInRange;
-    }
 
-    public int getMinNumberInRange () {
-        return minNumberInRange;
-    }
-
-    public int getAnswerLength () {
-        return answerLength;
-    }
 
 }
 

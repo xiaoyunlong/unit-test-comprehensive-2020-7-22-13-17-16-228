@@ -8,7 +8,7 @@ public class GuessTest {
     @Test
     void should_return_4A0B_when_guess_given_guess_answer_1234_and_guess_inputnumber_1234() {
         //given
-        GuessNumber guessNumber = new GuessNumber();
+        GuessNumber guessNumber = new GuessNumber(new AnswerGenerator());
         int[] answer = {1, 2, 3, 4};
         int[] guessInput = {1, 2, 3, 4};
         //when
@@ -20,7 +20,7 @@ public class GuessTest {
     @Test
     void should_return_0A0B_when_guess_given_guess_answer_1234_and_guess_inputnumber_5678() {
         //given
-        GuessNumber guessNumber = new GuessNumber();
+        GuessNumber guessNumber = new GuessNumber(new AnswerGenerator());
         int[] answer = {1, 2, 3, 4};
         int[] guessInput = {5, 6, 7, 8};
         //when
@@ -32,7 +32,7 @@ public class GuessTest {
     @Test
     void should_return_2A0B_when_guess_given_guess_answer_1234_and_guess_inputnumber_1278() {
         //given
-        GuessNumber guessNumber = new GuessNumber();
+        GuessNumber guessNumber = new GuessNumber(new AnswerGenerator());
         int[] answer = {1, 2, 3, 4};
         int[] guessInput = {1, 2, 7, 8};
         //when
@@ -44,7 +44,7 @@ public class GuessTest {
     @Test
     void should_return_0A2B_when_guess_given_guess_answer_1234_and_guess_inputnumber_7128() {
         //given
-        GuessNumber guessNumber = new GuessNumber();
+        GuessNumber guessNumber = new GuessNumber(new AnswerGenerator());
         int[] answer = {1, 2, 3, 4};
         int[] guessInput = {7, 1, 2, 8};
         //when
@@ -55,8 +55,8 @@ public class GuessTest {
 
     @Test
     void should_return_0A4B_when_guess_given_guess_answer_1234_and_guess_inputnumber_4123() {
-        //given answer和guseeIput写反了，一直到现在才发现！！ 这就是CV的坏处！！
-        GuessNumber guessNumber = new GuessNumber();
+        //given
+        GuessNumber guessNumber = new GuessNumber(new AnswerGenerator());
         int[] guessInput = {4, 1, 2, 3};
         int[] answer = {1, 2, 3, 4};
         //when
@@ -68,7 +68,7 @@ public class GuessTest {
     @Test
     void should_return_2A2B_when_guess_given_guess_answer_1234_and_guess_inputnumber_1243() {
         //given
-        GuessNumber guessNumber = new GuessNumber();
+        GuessNumber guessNumber = new GuessNumber(new AnswerGenerator());
         int[] answer = {1, 2, 3, 4};
         int[] guessInput = {1, 2, 4, 3};
         //when
@@ -78,11 +78,11 @@ public class GuessTest {
     }
 
     @Test
-    void should_return_resonable_answer_when_game_start() {
+    void should_return_reasonable_length_answer_when_game_start() {
         //given
-        GuessNumber guessNumber = new GuessNumber();
+        GuessNumber guessNumber = new GuessNumber(new AnswerGenerator());
         //when
-        int[] result = guessNumber.gameStrat();
+        int[] result = guessNumber.getAnswerGenerator().getAnswer();
         //then
         Assertions.assertEquals(4, result.length);
 
@@ -91,7 +91,7 @@ public class GuessTest {
     @Test
     void should_return_ok_when_input_guess_given_1234() {
         //given
-        GuessNumber guessNumber = new GuessNumber();
+        GuessNumber guessNumber = new GuessNumber(new AnswerGenerator());
         int[] guessInputNumber = {1, 2, 3, 4};
         //when
         String result = guessNumber.checkGuessInputNumber(guessInputNumber);
@@ -102,7 +102,7 @@ public class GuessTest {
     @Test
     void should_return_wrong_when_input_guess_given_1134() {
         //given
-        GuessNumber guessNumber = new GuessNumber();
+        GuessNumber guessNumber = new GuessNumber(new AnswerGenerator());
         int[] guessInputNumber = {1, 1, 3, 4};
         //when
         String result = guessNumber.checkGuessInputNumber(guessInputNumber);
@@ -113,11 +113,22 @@ public class GuessTest {
     @Test
     void should_return_false_when_input_guess_number_more_than_6_time() {
         //given
-        GuessNumber guessNumber = new GuessNumber();
+        GuessNumber guessNumber = new GuessNumber(new AnswerGenerator());
         int gameTimes = 7;
         //when
         boolean result = guessNumber.isGameTimesLessThanMaxTimes(gameTimes);
         //then
         Assertions.assertEquals(false, result);
+    }
+
+    @Test
+    void should_return_true_when_input_guess_number_more_than_6_time() {
+        //given
+        GuessNumber guessNumber = new GuessNumber(new AnswerGenerator());
+        int gameTimes = 3;
+        //when
+        boolean result = guessNumber.isGameTimesLessThanMaxTimes(gameTimes);
+        //then
+        Assertions.assertEquals(true, result);
     }
 }

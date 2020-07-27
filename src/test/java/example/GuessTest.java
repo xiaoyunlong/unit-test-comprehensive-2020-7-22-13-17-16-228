@@ -149,4 +149,30 @@ public class GuessTest {
         //then
         Assertions.assertEquals("You Win!",result);
     }
+
+    @Test
+    void should_return_Game_Over_when_guessGame_given_correct_input_beyond_six_times_and_answer() {
+        //given
+        GuessNumber guessNumber = new GuessNumber(new AnswerGenerator());
+        int[] answer = {1, 6, 7, 8};
+        int[] firstGuessInput = {1, 2, 3, 4};
+        int[] secondGuessInput = {5, 8, 7, 9};
+        int[] thirdGuessInput = {5, 6, 7, 8};
+        int[] fourGuessInput = {1, 2, 3, 4};
+        int[] fiveGuessInput = {5, 8, 7, 9};
+        int[] sixGuessInput = {5, 6, 7, 8};
+        int[] sevenGuessInput = {1, 6, 7, 8};
+
+        //when
+        guessNumber.guessGame(firstGuessInput,answer);
+        guessNumber.guessGame(secondGuessInput,answer);
+        guessNumber.guessGame(thirdGuessInput,answer);
+        guessNumber.guessGame(fourGuessInput,answer);
+        guessNumber.guessGame(fiveGuessInput,answer);
+        guessNumber.guessGame(sixGuessInput,answer);
+
+        String result = guessNumber.guessGame(sevenGuessInput,answer);
+        //then
+        Assertions.assertEquals("Game Over!",result);
+    }
 }

@@ -132,4 +132,21 @@ public class GuessTest {
         //then
         Assertions.assertEquals(true, result);
     }
+
+    @Test
+    void should_return_you_win_when_guessGame_given_correct_input_within_six_times_and_answer() {
+        //given
+        GuessNumber guessNumber = new GuessNumber(new AnswerGenerator());
+        int[] answer = {5, 6, 7, 8};
+        int[] firstGuessInput = {1, 2, 3, 4};
+        int[] secondGuessInput = {5, 8, 7, 9};
+        int[] thirdGuessInput = {5, 6, 7, 8};
+
+        //when
+        guessNumber.guessGame(firstGuessInput,answer);
+        guessNumber.guessGame(secondGuessInput,answer);
+        String result = guessNumber.guessGame(thirdGuessInput,answer);
+        //then
+        Assertions.assertEquals("You Win!",result);
+    }
 }

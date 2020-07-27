@@ -55,26 +55,28 @@ public class GuessNumber {
                 .distinct()
                 .collect(Collectors.toList())
                 .size();
+
         if (distinctSizeofInputNumber != guessInputNumber.length) {
             return "Wrong Input，Input again.";
         }
         return "OK";
     }
 
-    public String game(int[] guessInput, int[] answer) {
+    public String guessGame(int[] guessInput, int[] answer) {
         String thisGameResult;
-        if(!isAvailableGameTimesMoreThenZero(availableGameTimes)){
-            return"Game Over!";
+        if (!isAvailableGameTimesMoreThenZero(availableGameTimes)) {
+            return "Game Over!";
         }
-        if (checkGuessInputNumber(guessInput).equals("OK")) {
-            thisGameResult = guess(guessInput, answer);
-            System.out.println("本次游戏的output:" + thisGameResult);
-            if (thisGameResult.equals("4A0B")) {
-                return "You Win!";
-            }
+
+        thisGameResult = guess(guessInput, answer);
+        this.availableGameTimes--;
+        System.out.println("本次游戏的output:" + thisGameResult);
+        if (thisGameResult.equals("4A0B")) {
+            return "You Win!";
         }
-        return"Game Over!";
-}
+
+        return "The game continues...";
+    }
 
     public boolean isAvailableGameTimesMoreThenZero(int availableGameTimes) {
         if (availableGameTimes <= 0) {

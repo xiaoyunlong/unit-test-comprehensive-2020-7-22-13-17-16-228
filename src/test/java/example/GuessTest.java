@@ -115,9 +115,9 @@ public class GuessTest {
     void should_return_false_when_input_guess_number_more_than_6_time() {
         //given
         GuessNumber guessNumber = new GuessNumber(new AnswerGenerator());
-        int gameTimes = 7;
+        int gameTimes = 0;
         //when
-        boolean result = guessNumber.isGameTimesLessThanMaxTimes(gameTimes);
+        boolean result = guessNumber.isAvailableGameTimesMoreThenZero(gameTimes);
         //then
         Assertions.assertEquals(false, result);
     }
@@ -128,7 +128,7 @@ public class GuessTest {
         GuessNumber guessNumber = new GuessNumber(new AnswerGenerator());
         int gameTimes = 3;
         //when
-        boolean result = guessNumber.isGameTimesLessThanMaxTimes(gameTimes);
+        boolean result = guessNumber.isAvailableGameTimesMoreThenZero(gameTimes);
         //then
         Assertions.assertEquals(true, result);
     }

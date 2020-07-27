@@ -1,12 +1,13 @@
 package example;
 
 import java.util.Arrays;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class GuessNumber {
     private static int MAX_GAME_TIMES = 6;
     private AnswerGenerator answerGenerator;
+    private int availableGameTimes = 6;
+
 
     public GuessNumber(AnswerGenerator answerGenerator) {
         this.answerGenerator = answerGenerator;
@@ -54,34 +55,29 @@ public class GuessNumber {
                 .distinct()
                 .collect(Collectors.toList())
                 .size();
-        if(distinctSizeofInputNumber != guessInputNumber.length){
+        if (distinctSizeofInputNumber != guessInputNumber.length) {
             return "Wrong Input，Input again.";
         }
         return "OK";
     }
 
-    public String game() {
-        Scanner sc = new Scanner(System.in);
-        int[] answer = new int[4];
-        int[] guessInput = new int[answer.length];
-        String result;
-        for (int gameTime = 0; gameTime < MAX_GAME_TIMES; gameTime++) {
-            for (int index = 0; index < answer.length; index++) {
-                guessInput[index] = sc.nextInt();
-            }
-            if (checkGuessInputNumber(guessInput).equals("OK")) {
-                result = guess(guessInput, answer);
-                System.out.println("第" + gameTime + "次游戏的output:" + result);
-                if (result.equals("4A0B")) {
-                    return "You Win!";
-                }
+    public String game(int[] guessInput, int[] answer) {
+        String thisGameResult;
+        if(!isAvailableGameTimesMoreThenZero(availableGameTimes)){
+            return"Game Over!";
+        }
+        if (checkGuessInputNumber(guessInput).equals("OK")) {
+            thisGameResult = guess(guessInput, answer);
+            System.out.println("本次游戏的output:" + thisGameResult);
+            if (thisGameResult.equals("4A0B")) {
+                return "You Win!";
             }
         }
-        return "Game Over!";
-    }
+        return"Game Over!";
+}
 
-    public boolean isGameTimesLessThanMaxTimes(int gameTimes) {
-        if (gameTimes > 6) {
+    public boolean isAvailableGameTimesMoreThenZero(int availableGameTimes) {
+        if (availableGameTimes <= 0) {
             return false;
         }
         return true;

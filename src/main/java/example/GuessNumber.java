@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class GuessNumber {
     private AnswerGenerator answerGenerator;
-    private int availableGameTimes = 6;
+
 
 
     public GuessNumber(AnswerGenerator answerGenerator) {
@@ -61,23 +61,5 @@ public class GuessNumber {
         return "OK";
     }
 
-    public String guessGame(int[] guessInput, int[] answer) {
-        String thisGameResult;
-        if (!isAvailableGameTimesMoreThenZero(availableGameTimes)) {
-            return "Game Over!";
-        }
 
-        thisGameResult = guess(guessInput, answer);
-        this.availableGameTimes--;
-        System.out.println("本次游戏的output:" + thisGameResult);
-        if (thisGameResult.equals("4A0B")) {
-            return "You Win!";
-        }
-
-        return "The game continues...";
-    }
-
-    public boolean isAvailableGameTimesMoreThenZero(int availableGameTimes) {
-        return availableGameTimes > 0;
-    }
 }

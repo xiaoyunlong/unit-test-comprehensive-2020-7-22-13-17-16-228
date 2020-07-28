@@ -78,9 +78,6 @@ public class GuessNumber {
     }
 
     public boolean isAvailableGameTimesMoreThenZero(int availableGameTimes) {
-        if (availableGameTimes <= 0) {
-            return false;
-        }
-        return true;
+        return availableGameTimes > 0;
     }
 }

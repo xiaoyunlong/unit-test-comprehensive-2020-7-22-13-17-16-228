@@ -3,27 +3,27 @@ package example;
 import java.util.Random;
 
 public class AnswerGenerator {
-    private final int maxNumberInRange = 9;
-    private final int minNumberInRange = 0;
-    private final int answerLength = 4;
+    private final int MAX_NUMBER_IN_RANGE = 9;
+    private final int ANSWER_LENGTH = 4;
     private int[] answer;
 
     public AnswerGenerator() {
-        answer = new int[answerLength];
-        Random rand = new Random();
-        boolean[] bool = new boolean[maxNumberInRange];
-        int randomInt ;
-        for (int index = 0; index < answerLength; index++) {
-            do {
-                randomInt = rand.nextInt(maxNumberInRange);
-            } while (bool[randomInt]);
-            answer[index] = randomInt;
-            bool[randomInt] = true;
-        }
+        answer = new int[ANSWER_LENGTH];
+
 
     }
 
     public int[] getAnswer() {
+        Random rand = new Random();
+        boolean[] bool = new boolean[MAX_NUMBER_IN_RANGE];
+        int randomInt ;
+        for (int index = 0; index < ANSWER_LENGTH; index++) {
+            do {
+                randomInt = rand.nextInt(MAX_NUMBER_IN_RANGE);
+            } while (bool[randomInt]);
+            answer[index] = randomInt;
+            bool[randomInt] = true;
+        }
         return answer;
     }
 

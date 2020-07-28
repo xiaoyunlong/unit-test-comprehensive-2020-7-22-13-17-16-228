@@ -4,9 +4,8 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class GuessNumber {
+    //TODO
     private AnswerGenerator answerGenerator;
-
-
 
     public GuessNumber(AnswerGenerator answerGenerator) {
         this.answerGenerator = answerGenerator;
@@ -22,6 +21,7 @@ public class GuessNumber {
         return countA + "A" + countB + "B";
     }
 
+    // TODO
     public int getCountOfGuessInputCorrectNumberAndPosition(int[] guessInput, int[] answer) {
         int result = 0;
         for (int index = 0; index < guessInput.length; index++) {
@@ -45,6 +45,7 @@ public class GuessNumber {
     }
 
 
+    //TODO magic String and number
     public String checkGuessInputNumber(int[] guessInputNumber) {
         if (guessInputNumber.length != 4) {
             return "Wrong Input，Input again.";

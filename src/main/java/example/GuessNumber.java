@@ -1,66 +1,41 @@
 package example;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
+import java.util.HashSet;
+import java.util.Set;
 
 public class GuessNumber {
-    //TODO
-    private AnswerGenerator answerGenerator;
+
+    private final Set<Integer> answerSet = new HashSet<>();
+    private final int[] answerGenerator;
 
     public GuessNumber(AnswerGenerator answerGenerator) {
-        this.answerGenerator = answerGenerator;
+        this.answerGenerator = answerGenerator.getAnswer();
     }
 
-    public AnswerGenerator getAnswerGenerator() {
-        return answerGenerator;
-    }
 
-    public String guess(int[] guessInput, int[] answer) {
-        int countA = this.getCountOfGuessInputCorrectNumberAndPosition(guessInput, answer);
-        int countB = this.getCountOfGuessInputCorrectNumber(guessInput, answer);
-        return countA + "A" + countB + "B";
-    }
 
-    // TODO
-    public int getCountOfGuessInputCorrectNumberAndPosition(int[] guessInput, int[] answer) {
-        int result = 0;
-        for (int index = 0; index < guessInput.length; index++) {
-            if (guessInput[index] == answer[index]) {
-                result++;
+    public String guess(int[] guessInput) {
+        int countA = 0;
+        int countB = 0;
+        for (int answerItem : answerGenerator) {
+            answerSet.add(answerItem);
+        }
+        for (int guessIndex = 0; guessIndex < guessInput.length; guessIndex++) {
+            if (guessInput[guessIndex] == answerGenerator[guessIndex]) {
+                countA++;
+            }
+            if (answerSet.contains(guessInput[guessIndex])) {
+                countB++;
             }
         }
-        return result;
+
+        if (countA != 0 && countB != 0) {
+            countB = countB - countA;
+        }
+
+        return String.format("%sA%sB", countA, countB);
     }
 
-    public int getCountOfGuessInputCorrectNumber(int[] guessInput, int[] answer) {
-        int result = 0;
-        for (int index = 0; index < guessInput.length; index++) {
-            if (Arrays.binarySearch(answer, guessInput[index]) >= 0) {
-                if (guessInput[index] != answer[index]) {
-                    result++;
-                }
-            }
-        }
-        return result;
-    }
-
-
-    //TODO magic String and number
-    public String checkGuessInputNumber(int[] guessInputNumber) {
-        if (guessInputNumber.length != 4) {
-            return "Wrong Input，Input again.";
-        }
-        int distinctSizeofInputNumber = Arrays.asList(guessInputNumber)
-                .stream()
-                .distinct()
-                .collect(Collectors.toList())
-                .size();
-
-        if (distinctSizeofInputNumber != guessInputNumber.length) {
-            return "Wrong Input，Input again.";
-        }
-        return "OK";
-    }
 
 
 }

@@ -3,9 +3,8 @@ package example;
 import java.util.Random;
 
 public class AnswerGenerator {
-    private final int MAX_NUMBER_IN_RANGE = 9;
     private final int ANSWER_LENGTH = 4;
-    private int[] answer;
+    private final int[] answer;
 
     public AnswerGenerator() {
         answer = new int[ANSWER_LENGTH];
@@ -15,6 +14,7 @@ public class AnswerGenerator {
 
     public int[] getAnswer() {
         Random rand = new Random();
+        int MAX_NUMBER_IN_RANGE = 9;
         boolean[] bool = new boolean[MAX_NUMBER_IN_RANGE];
         int randomInt ;
         for (int index = 0; index < ANSWER_LENGTH; index++) {
